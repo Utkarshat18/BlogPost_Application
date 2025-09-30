@@ -1,6 +1,7 @@
+
 const Userpage=()=>{
     return (
-        <h1>Hello this is user page </h1>
+        <h1>This is user page</h1>
     )
 }
 
