@@ -1,27 +1,26 @@
-const {required}=require ('joi');
+const { required } = require('joi');
 const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 
 const UserSchema=new Schema({
     name:{
-        type:string,
+        type:String,
         required:true
     },
     role:{
-        type:string,
-        required:true
+        type:String,
+        required:true,
     },
     email:{
-        type:string,
+        type:String,
         required:true,
         unique:true
     },
     password:{
-        type:string,
+        type:String,
         required:true
     }
 });
 
-const UserModel=mongoose.Model('users',UserSchema);
-
+const UserModel=mongoose.model('users',UserSchema);
 module.exports=UserModel;
