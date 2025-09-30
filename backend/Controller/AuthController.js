@@ -9,7 +9,7 @@ const register=async(req, res)=>{
         if(user)
         {
             return res.status(409)
-            .json({message:"User Already exists",success:false});
+            .json({message:"User Already exists with given credentials",success:false});
         }
 
         const userModel=new UserModel({name,role,email,password});
