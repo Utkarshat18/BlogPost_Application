@@ -1,60 +1,61 @@
-import { Link ,useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import './Login.css'
+import "./Login.css";
 
-const Login=()=>{
-    const navigate=useNavigate();
-    const [logininfo,setlogininfo]=useState({
-        email:"",
-        password:""
-    });
+const Login = () => {
+  const navigate = useNavigate();
+  const [logininfo, setlogininfo] = useState({
+    email: "",
+    password: "",
+  });
 
-    const handlechange=(e)=>{
-        const {name,value}=e.target;
-        console.log(name,value);
-        const copylogininfo={...logininfo};
-        copylogininfo[name]=value;
-        setlogininfo(copylogininfo);
+  const handlechange = (e) => {
+    const { name, value } = e.target;
+    console.log(name, value);
+    const copylogininfo = { ...logininfo };
+    copylogininfo[name] = value;
+    setlogininfo(copylogininfo);
+  };
+
+  const handlelogin = async (e) => {
+    e.preventDefault();
+    const { email, password } = logininfo;
+    console.log(logininfo);
+    if (!email || !password) {
+      alert("Please fill all the fields");
+      return;
     }
 
-    const handlelogin=async(e)=>{
-        e.preventDefault();
-        const {email,password}=logininfo;
-        console.log(logininfo)
-        if(!email || !password)
-        {
-            alert("Please fill all the fields")
+    try {
+      const url = "http://localhost:8000/auth/login";
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(logininfo),
+      });
+      const result = await response.json();
+      console.log(result);
+      localStorage.setItem("token", result.token);
+      localStorage.setItem("role", result.role);
+      const { success, message } = result;
+      if (success) {
+        if(result.role==="admin"){
+            navigate("/admin");
             return;
-        }
-
-        try{
-            const url="http://localhost:8000/auth/login";
-            const response=await fetch(url,{
-                method:"POST",
-                headers:{"Content-Type":"application/json"},
-                body:JSON.stringify(logininfo)
-            })
-            const result=await response.json();
-            localStorage.setItem("token",result.token);
-            localStorage.setItem("role",result.role);
-            const {success,message}=result;
-            if(success)
-                {
-                    navigate("/");
-                }
-            else{
-                alert(message);
-            }  
-        }catch(err){
-            alert("Facing some issue");
-            return;
-        }
-
+          }
+        navigate("/user");
+      } else {
+        alert(message);
+      }
+    } catch (err) {
+      alert("Facing some issue");
+      return;
     }
+  };
 
-    return (
-        <div className="login-container">
-            <div className="login-box">
+  return (
+    <div className="login-container">
+      <div className="login-box">
         <h2>Login</h2>
         <form onSubmit={handlelogin}>
           <div className="input-group">
@@ -81,15 +82,17 @@ const Login=()=>{
             />
           </div>
 
-          <button type="submit" className="btn-login">Login</button>
+          <button type="submit" className="btn-login">
+            Login
+          </button>
         </form>
 
         <p className="login-message">
           Don't have account! <Link to="/register">Register</Link> here
         </p>
       </div>
-        </div>
-    )
+    </div>
+  );
 };
 
 export default Login;
