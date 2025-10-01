@@ -37,11 +37,11 @@
   transition: 0.2s ease-in-out;
 }
 
-.addblog-form input[type="text"]:focus,
+/* .addblog-form input[type="text"]:focus,
 .addblog-form textarea:focus {
   border-color: #007bff;
   box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
-}
+} */
 
 .addblog-form textarea {
   resize: none;
