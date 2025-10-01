@@ -20,4 +20,21 @@ const addblog=async(req, res)=>{
     }
 }
 
-module.exports={addblog};
+const getblog=async(req ,res)=>{
+    try{
+        console.log("Getting all the blogs");
+        const blogs=await BlogModel.find();
+        console.log(blogs);
+        if(!blogs)
+        {
+            res.json({Message:"NO blog foung"});
+        }
+        res.json({message:"All blogs fetched successfully",blogs,success:true})
+    }catch(err)
+    {
+        res.status(500)
+        .json({message:"Internal server error",err,success:false});
+    }
+}
+
+module.exports={addblog,getblog};
