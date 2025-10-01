@@ -1,3 +1,4 @@
+import Displayblog from "../../components/DisplayBlog/DisplayBlog";
 import "./Adminpage.css";
 import { useNavigate } from "react-router-dom";
 
@@ -13,6 +14,7 @@ const Adminpage = () => {
         </p>
         <button className="btn btn-primary"onClick={()=>navigate("/addblog")}>Add New Blog</button>
       </div>
+      <Displayblog/>
     </div>
   );
 };

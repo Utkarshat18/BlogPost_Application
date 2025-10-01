@@ -1,7 +1,11 @@
+import Displayblog from "../../components/DisplayBlog/DisplayBlog";
 
 const Userpage=()=>{
     return (
-        <h1>This is user page</h1>
+        <div>
+            <h1>Enjoy your daily blogs here</h1>
+            <Displayblog/>
+        </div>
     )
 }
 
