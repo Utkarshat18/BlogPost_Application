@@ -14,10 +14,6 @@ const BlogSchema=new Schema({
     content:{
         type:String,
         required:true
-    },
-    img:{
-        type:String,
-        required:true
     }
 });
 

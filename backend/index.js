@@ -20,6 +20,7 @@ app.use(cors());
 app.use('/auth',AuthRouter);
 app.use('/blog',BlogRouter);
 
+
 app.listen(PORT,()=>{
     console.log(`Server is running on PORT ${PORT}`);
 })
