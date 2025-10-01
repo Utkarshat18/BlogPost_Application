@@ -8,6 +8,7 @@ import Register from './components/Register/Register'
 import Adminpage from './pages/AdminPage/Adminpage'
 import Userpage from './pages/UserPage/Userpage'
 import ProtectedRoute from './ProtectedRoute/ProtectedRoute'
+import Addblog from './components/Addblog/Addblog'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/admin' element={<ProtectedRoute role="admin"><Adminpage/></ProtectedRoute>}/>
+        <Route path='/addblog' element={<ProtectedRoute role="admin"><Addblog/></ProtectedRoute>}/>
         <Route path='/user' element={<ProtectedRoute role="user"><Userpage/></ProtectedRoute>}/>
       </Routes>
     </div>
